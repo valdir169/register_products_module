@@ -1,0 +1,58 @@
+<form
+  id="search-form"
+  method="get"
+  action="{% url 'index' %}"
+  role="search"
+  class="relative w-full max-w-sm"
+>
+{# Icono de búsqueda #}
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-gray-400"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+    />
+  </svg>
+
+{# Input de búsqueda#}
+  <input
+    id="search-input"
+    type="text"
+    name="q"
+    value="{{ q }}"
+    autocomplete="off"
+    placeholder="Buscar por código o descripción…"
+    class="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-4 text-sm text-slate-700 placeholder:text-gray-400 shadow-sm transition duration-200 hover:border-slate-300 focus:border-indigo-500 focus:outline-none focus:ring-indigo-100"
+  />
+
+{#Icono  de Limpiar#}
+  <button
+    type="button"
+    id="search-clear"
+    aria-label="Limpiar búsqueda"
+    title="Limpiar"
+    class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600 {% if not q %}hidden{% endif %}"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-5"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M6 18 18 6M6 6l12 12"
+      />
+    </svg>
+  </button>
+</form>

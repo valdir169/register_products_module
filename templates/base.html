@@ -1,0 +1,30 @@
+{% load static tailwind_cli%}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Gestión de productos{% endblock %}</title>
+    {# DEV {% tailwind_css %} #}
+
+    {# Prod#}
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
+  </head>
+  <body class="bg-gray-100 min-h-screen">
+    {# Barra de navegación #}
+    {% include "partials/navbar.html" %}
+
+    {# Contenido principal #}
+    <main class="py-8 px-12 bg-slate-100">
+      {% block content %} {% endblock %}
+    </main>
+
+    {# modal #}
+    {% include "product/product_modal.html" %}
+
+    {# Footer #}
+    {% include "partials/footer.html" %}
+
+    {## Scripts #}
+    <script type="module" src="{% static 'js/main.js' %}" defer></script>
+  </body>
+</html>

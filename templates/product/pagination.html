@@ -1,0 +1,32 @@
+{% if page_obj.paginator.num_pages > 1 %}
+<nav class="mt-4 flex flex-col items-center justify-between gap-3 text-sm text-gray-600 sm:flex-row"
+     aria-label="Paginación">
+  <p class="text-slate-400">
+    Mostrando {{ page_obj.start_index }}–{{ page_obj.end_index }}
+    de {{ page_obj.paginator.count }} productos
+  </p>
+
+  <div class="flex items-center gap-1">
+    {% if page_obj.has_previous %}
+      <a href="{% url 'index' %}?page={{ page_obj.previous_page_number }}{% if q_param %}&{{ q_param }}{% endif %}"
+         class="rounded-md border border-indigo-300 bg-white px-3 py-1.5 hover:bg-indigo-100 transition">Anterior</a>
+    {% endif %}
+
+    {% for n in page_range %}
+      {% if n == page_obj.number %}
+        <span class="rounded-md bg-indigo-600 px-3 py-1.5 text-white">{{ n }}</span>
+      {% elif n == page_obj.paginator.ELLIPSIS %}
+        <span class="px-2">…</span>
+      {% else %}
+        <a href="{% url 'index' %}?page={{ n }}{% if q_param %}&{{ q_param }}{% endif %}"
+           class="rounded-md border border-slate-300 bg-white px-3 py-1.5 hover:bg-slate-100">{{ n }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <a href="{% url 'index' %}?page={{ page_obj.next_page_number }}{% if q_param %}&{{ q_param }}{% endif %}"
+         class="rounded-md border border-indigo-300 bg-white px-3 py-1.5 hover:bg-indigo-100 transition">Siguiente</a>
+    {% endif %}
+  </div>
+</nav>
+{% endif %}

@@ -1,0 +1,41 @@
+<dialog id="product-modal"
+        data-form-modal
+        data-records="products-data"
+        data-create-url="{% url 'product_create' %}"
+        data-create-title="Nuevo producto"
+        data-edit-title="Editar producto"
+        data-reset-url="{% url 'index' %}"
+        data-reopen="{% if form.errors %}true{% endif %}"
+        class="m-auto w-full max-w-lg rounded-2xl p-0 shadow-2xl backdrop:bg-black/50 backdrop:backdrop-blur-md">
+
+  <form method="post"
+        action="{% if editing_id %}{% url 'product_update' editing_id %}{% else %}{% url 'product_create' %}{% endif %}"
+        class="flex max-h-[90vh] flex-col">
+    {% csrf_token %}
+
+    <header class="flex items-center justify-between border-b border-gray-200 px-6 py-4">
+      <h2 data-modal-title class="text-lg font-bold text-indigo-600">
+        {% if editing_id %}Editar producto{% else %}Nuevo producto{% endif %}
+      </h2>
+      <button type="button" data-modal-close aria-label="Cerrar"
+              class="rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </header>
+
+    {% include "product/product_form_fields.html" %}
+
+    <footer class="flex justify-end gap-3 rounded-b-2xl border-t border-gray-200 bg-gray-50 px-6 py-4">
+      <button type="button" data-modal-close
+              class="rounded-lg border border-indigo-300 bg-white px-4 py-2 text-sm font-medium text-slate-600 hover:bg-indigo-100">
+        Cancelar
+      </button>
+      <button type="submit"
+              class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 cursor-pointer">
+        Guardar
+      </button>
+    </footer>
+  </form>
+</dialog>

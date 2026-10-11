@@ -1,0 +1,43 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block content %}
+<div class="max-w-5xl mx-auto p-6">
+{# header  #}
+  <div class="flex justify-between items-center mb-6 rounded-2xl border border-slate-200 bg-white shadow-sm gap-5 p-6 ">
+    <h1 class="text-2xl font-bold text-indigo-600">Productos</h1>
+    {% include "product/form-search.html" %}
+    <button
+      type="button"
+      data-modal-create="product-modal"
+      class="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-5 py-3 font-medium text-white shadow-sm transition duration-200  focus:outline-none hover:bg-indigo-700 cursor-pointer"
+    >
+    + Nuevo producto
+    </button>
+  </div>
+
+{# Mensajes de acción #}
+  {% if messages %}
+    <div class="mb-4 space-y-2">
+    {% for message in messages %}
+    <div data-auto-dismiss="3000"
+        class="w-fit rounded-md px-3 py-1.5 text-sm transition-opacity duration-500
+                {% if message.tags == 'error' %}bg-red-100 text-red-800{% else %}bg-green-100 text-green-800{% endif %}">
+      {{ message }}
+    </div>
+    {% endfor %}
+    </div>
+  {% endif %}
+
+  {#Tabla#}
+  <div id="results" class="rounded-2xl border border-slate-200 bg-white shadow-sm p-6">
+    <div class="overflow-x-auto rounded-lg ">
+    {% include "product/table-product.html" %}
+    </div>
+    
+    {% include "product/pagination.html" %}
+    {{products|json_script:"products-data" }}
+  </div>
+
+{# Modal #}
+{% include "product/product_modal.html" %}
+{% endblock %}

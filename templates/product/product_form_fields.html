@@ -1,0 +1,14 @@
+<div class="flex flex-wrap gap-4 overflow-y-auto px-6 py-5">
+  {% for field in form %}
+    <div class="{% if field.name == 'price' or field.name == 'stock' %}w-[calc(50%-0.5rem)]{% else %}w-full{% endif %}">
+      <label for="{{ field.id_for_label }}" class="mb-1 block text-sm font-medium text-gray-700">
+        {{ field.label }}
+        {% if field.field.required %}<span class="text-red-500">*</span>{% endif %}
+      </label>
+      {{ field }}
+      {% for error in field.errors %}
+        <p data-field-error class="mt-1 text-sm text-red-600">{{ error }}</p>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>
