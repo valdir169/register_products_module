@@ -2,7 +2,7 @@
 
 Aplicación web desarrollada en Django + Tailwind css para registrar, consultar, actualizzar y eliminar productos de una tienda piloto (referencia de 1200 registros). 
 
-Loa datos se alamcenan de forma persistente en un archivo de texto en formato JSON (`products.json`).
+Loa datos se almacenan de forma persistente en un archivo de texto en formato JSON (`products.json`).
 
 ## 1. Requisitos
 - Python 3.9 o superior (probado en 3.9)
