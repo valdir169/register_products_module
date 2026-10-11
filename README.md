@@ -18,11 +18,16 @@ python --version
 git --version
 ```
 
+En Windows, si Python no es reconocido prueba con el lanzador (py) 
+```
+py --version
+```
+**Nota:** en los pasos siguientes se usa `python`. Si en tu equipo solo funciona `py`, reemplaza `python` por `py` **únicamente al crear el entorno virtual** (paso 2.3). Con el entorno activado, `python` ya funciona.
 
 ### 2.2 Clonar el repositorio
 ```
-git clone ....
-cd ef
+git clone https://github.com/valdir169/register_products_module.git
+cd register_products_module
 ```
 
 
@@ -30,30 +35,36 @@ cd ef
 ```
 python -m venv venv
 ```
-
-Si utiliza CMD (Simbolo del sistema)
+ 
+o, si usas el lanzador de Windows:
+ 
 ```
-venv\Scripts\activate.bat
-```
-
-Si utiliza Powershell
-```
-.\venv\Scripts\Activate.ps1
+py -m venv venv
 ```
 
-Si utiliza la terminal de VSCode
+Activarlo, según la terminal que uses:
+ 
+| Terminal | Comando |
+|---|---|
+| CMD (Símbolo del sistema) | `venv\Scripts\activate.bat` |
+| PowerShell | `.\venv\Scripts\Activate.ps1` |
+| Terminal de VS Code (usa PowerShell por defecto) | `.\venv\Scripts\Activate.ps1` |
+| Linux o macOS | `source venv/bin/activate` |
+ 
+Para comprobar que se activó, aparecerá `(venv)` al inicio de la línea de la terminal, por ejemplo:
 ```
-.\venv\Scripts\Activate.ps1
+(venv) C:\proyectos\mi-repo>
 ```
 
-Para comprobar que se actuvó correctamente, aparecerá (venv) al inicio de la linea de la terminal, por ejemplo:
+**Si PowerShell muestra el error "la ejecución de scripts está deshabilitada en este sistema":** ejecuta este comando y vuelve a activar el entorno. Solo afecta a la terminal actual:
+ 
 ```
-(venv) C:\proyectos\mi-tienda>
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ```
 
 
 ### 2.4 Instalar las dependencias
-Con el entorno virtual activado ejecura: 
+Con el entorno virtual activado ejecuta: 
 ```
 python -m pip install -r requirements.txt 
 ```
